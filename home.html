@@ -4,8 +4,9 @@
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
+<meta charset="utf-8">
 	<title>OgPlexus</title>
+	
 	<meta name="description" content="C. Brandon Ogbunu's home page at Brown University">
 	<meta name="keywords" content="">
 
@@ -54,6 +55,8 @@
 	<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
 	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://scarpino.github.io/images/apple-touch-icon-144x144-precomposed.png">
 </head>
+</head>
+
 
 <body class="home">
 
@@ -61,86 +64,57 @@
 
 <div class="navigation-wrapper">
 	<div class="site-name">
-		<a href="http://OgPlexus.github.io/">OgPlexus
-		</a>
-	</div>
-	<!-- /.site-name -->
+		<a href="{{ site.url }}/">{{ site.title }}</a>
+	</div><!-- /.site-name -->
 	<div class="top-navigation">
 		<nav role="navigation" id="site-nav" class="nav">
-			<button type="button" role="button" id="menutoggle" class="navtoogle navicon-lines-button x" aria-hidden="true">
-				<span class="navicon-lines">
-				</span>
-				"menu"
-			</button>
-		    <ul>    
-				<li><a href="http://OgPlexus.github.io/bigdata/" >Big Data</a></li>
-				<li><a href="http://OgPlexus.github.io/group_members/" >Group Members</a></li>
-				<li><a href="http://OgPlexus.github.io/publications/" >Publications</a></li>
-				<li><a href="http://OgPlexus.github.io/files/OgPlexus_cv.pdf" >Curriculum Vitae</a></li>
-				<li><a href="http://OgPlexus.github.io/software/" >Software</a></li>
-				<li><a href="http://OgPlexus.github.io/teaching/" >Teaching</a></li>
-				<li><a href="http://OgPlexus.github.io/posts/" >Posts</a></li>
-			</ul>
+		    <ul>
+		        {% for link in site.data.navigation %}
+				    {% if link.url contains 'http' %}
+				        {% assign domain = '' %}
+				        {% else %}
+				        {% assign domain = site.url %}
+				    {% endif %}
+				    <li><a href="{{ domain }}{{ link.url }}" {% if link.url contains 'http' %}target="_blank"{% endif %}>{{ link.title }}</a></li>
+				{% endfor %}
+		    </ul>
 		</nav>
-	</div> <!--/.top-navigation -->
+	</div><!-- /.top-navigation -->
 </div><!-- /.navigation-wrapper -->
 
-<!--<div class="image-wrap">
-  <img src=
-      "http://scarpino.github.io/images/front_pic_2.jpg"
-  alt=" feature image">
-</div> <!-- /.image-wrap -->
-
-
 <div id="main" role="main"> 
-	<div class="article-author-side">
-    
+  <div class="article-author-side">
+    {% if page.author %}
+  {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.owner %}
+{% endif %}
+
 <div itemscope itemtype="http://schema.org/Person">
-	<img src="C. Brandon Ogbunu Photo.jpg" class="bio-photo" alt="Brandon Ogbunu bio photo">
 
 
-  <h3 itemprop="name">C. Brandon Ogbunu</h3>
-  <p>Assistant Professor in the Department of Ecology and Evolutionary Biology at Brown University.</p>
-  <a href="mailto:brandon_ogbunu@brown.edu" class="author-social" target="_blank"><i class="fa fa-fw fa-envelope-square"></i>Email</a>
-  <a href="http://twitter.com/@big_data_kane" class="author-social" target="_blank"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
-  
-  <!--
-  <a href="http://linkedin.com/in/svscarpino" class="author-social" target="_blank"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a>
-    -->
-  
+  <h3 itemprop="name"> C. Brandon Ogbunu</h3>
+  <p></p>
+  <a href="mailto: brandon_ogbunu@brown.edu" class="author-social" target="_blank"><i class="fa fa-fw fa-envelope-square"></i>Email</a>
+  <a href="https://twitter.com/big_data_kane?lang=en" class="author-social" target="_blank"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
   <a href="http://github.com/OgPlexus" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
-  
-  
-  
 </div>
      <a href="https://scholar.google.com/citations?user=rHUzZs0AAAAJ&hl=en" class="author-social" target="_blank"><i class="fa fa-fw fa-university"></i> Google Scholar</a>
-     
-	 <br>
-	  <!--<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/big_data_kane" data-widget-id="578251524540801025">Tweets by @svscarpino</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
-  <div id="index">
-  	-->
-  	<h3>Welcome!</h3>
-<p>C. Brandon Ogbunu is an Assistant Professor in the Department of Ecology and Evolutionary Biology at Brown University. He is an evolutionary systems biologist, and uses experimental evolution, mathematical modeling, and computational biology to better understand how adaptive evolution occurs in nature, mainly in microbial models of disease. In doing so, he aims to develop theory that enriches our understanding of the evolutionary process and contributes to practical solutions for clinical medicine and public health.   
-<br />
-<br />	
+     <br><a class="twitter-timeline" href="https://twitter.com/big_data_kane?ref_src=twsrc%5Etfw">Tweets by big_data_kane</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 
+	 <div id="index">
+  	<h3>Welcome!</h3>
+	
+<p>C. Brandon Ogbunu is an Assistant Professor in the Department of Ecology and Evolutionary Biology at Brown University. He is an evolutionary systems biologist, and uses experimental evolution, mathematical modeling, and computational biology to better understand how adaptive evolution occurs in nature, mainly in microbial models of disease. In doing so, he aims to develop theory that enriches our understanding of the evolutionary process and contributes to practical solutions for clinical medicine and public health.   
+<br />	
+  	<h3>Affiliations</h3>
+  	<h4> Department of Ecology and Evolutionary Biology, Brown University</h4>
   </div><!-- /#index -->
 </div><!-- /#main -->
 
 <div class="footer-wrap">
   <footer>
-
-<span> 2018 Brandon Ogbunu. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a> theme.</span>
-
   </footer>
 </div><!-- /.footer-wrap -->
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="http://scarpino.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-<script src="http://scarpino.github.io/assets/js/scripts.min.js"></script>
-
-
   
 </body>
 </html>
